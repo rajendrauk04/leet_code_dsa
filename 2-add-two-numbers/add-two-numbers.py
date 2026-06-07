@@ -11,7 +11,6 @@ class Solution:
         carry = 0
 
         while l1 is not None or l2 is not None or carry != 0:
-
             val1 = 0
             val2 = 0
 
@@ -37,5 +36,4 @@ class Solution:
 
             if l2 is not None:
                 l2 = l2.next
-
         return dummy.next
