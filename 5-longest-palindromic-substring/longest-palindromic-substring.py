@@ -14,21 +14,17 @@ class Solution:
             return left + 1, right - 1
 
         for i in range (len(s)):
-            odd_start, odd_end = expand(i, i)
-            odd_length = (odd_end - odd_start + 1)
-            best_length = (end - start + 1)
+            left1, right1 = expand(i, i)
 
-            if odd_length > best_length:
-                start = odd_start
-                end = odd_end
+            if right1 - left1 > end - start:
+                start = left1
+                end = right1
 
-            even_start, even_end = expand(i, i + 1)
-            even_length = (even_end - even_start + 1)
+            left2, right2 = expand(i, i + 1)
+
+            if right2 - left2 > end - start:
+                start = left2
+                end = right2
             
-            best_length = (end - start + 1)
 
-            if even_length > best_length:
-                start = even_start
-                end = even_end
-
-        return s[start: end + 1]
+        return s[start:end + 1]
