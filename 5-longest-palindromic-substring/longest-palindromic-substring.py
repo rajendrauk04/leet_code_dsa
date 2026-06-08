@@ -11,16 +11,24 @@ class Solution:
                 left -= 1
                 right += 1
             
-            return right - left - 1
+            return left + 1, right - 1
 
         for i in range (len(s)):
-            odd_length = expand(i, i)
-            even_length = expand(i, i + 1)
+            odd_start, odd_end = expand(i, i)
+            odd_length = (odd_end - odd_start + 1)
+            best_length = (end - start + 1)
 
-            current_length = max(odd_length, even_length)
+            if odd_length > best_length:
+                start = odd_start
+                end = odd_end
 
-            if current_length > end - start:
-                start = i - (current_length - 1) // 2
-                end = i + current_length // 2
+            even_start, even_end = expand(i, i + 1)
+            even_length = (even_end - even_start + 1)
+            
+            best_length = (end - start + 1)
+
+            if even_length > best_length:
+                start = even_start
+                end = even_end
 
         return s[start: end + 1]
